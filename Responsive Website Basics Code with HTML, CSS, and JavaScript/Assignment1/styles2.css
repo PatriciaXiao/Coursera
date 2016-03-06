@@ -1,0 +1,47 @@
+/*
+ * Patricia Xiao (Zhiping)
+ * 2016/2/9
+ * I changed the background, the color, font,
+ *     margin, padding, and the border
+ * Placing your mouse over the text will make things different
+ * Use sublime text 3 and Chrome; 
+ * it seems that there're some problem with the division of the lines, but no worry, I re-ordered it online so that it should look nicer.
+ * 
+ */
+
+/* set the background to be yellow */
+body{
+    background: yellow;
+}
+
+/* set the font color to be red,
+   family be "Arial" (or sans-serif), and the font is bold
+   margin the sentence to the middle of the page,
+   aline the text to the center,
+   adapt the size of the font according to the container
+*/
+h1{
+    color: red;
+    font-family: "Arial" sans-serif;
+    font-weight: bold;
+    margin: 20% 20%;
+    text-align: center;
+    font-size: 2.1em;
+}
+
+/* when the mouse is hovering over the h1 text:
+   the mouse would be changed to a cross
+   the background of the text would be changed into white
+   font would be oblique and uppercase and changed to blue,
+   the words are padded towards its border,
+   the border is thick solid red ridge,
+   and the text is underlined and overlined
+*/
+h1:hover{
+    background: white;
+    color: blue;  font-style: oblique;
+    cursor: crosshair;  border: thick solid red;
+    border-style: ridge;   padding: 6% 3%;
+    text-transform: uppercase;
+    text-decoration: underline overline;
+}

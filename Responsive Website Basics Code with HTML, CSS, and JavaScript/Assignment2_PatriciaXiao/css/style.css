@@ -1,0 +1,82 @@
+body{
+	background: #f6e7c2;
+}
+
+.navigate{
+	color: gray;
+	text-align: center;
+	font-family: "Arial" sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.navigate:hover{
+	background: #d1c0a5;
+	color: white;
+	cursor: pointer;
+}
+
+h1{
+	color: #b28850;
+	font-family: "Arial" sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+h2{
+	color: #a7793b;
+	font-family: "Arial" sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.hrefwarn{
+	text-decoration:underline;
+}
+.hrefwarn:hover{
+	cursor: pointer;
+	color: #eb6100;
+}
+
+.logostyle{
+	max-width: 100%;
+	min-width: 50%;
+	text-align: center;
+}
+
+.smallpic{
+	max-width: 12%;
+	padding: 0.3% 0.3%;
+	border: thick solid #f6e7c2;
+}
+
+.smallpic:hover{
+	border: thick solid #eb6100;
+	cursor: pointer;
+}
+
+.selectedimage{
+	border: thick solid #cb9348;
+}
+
+.largepic{
+	max-width: 90%;
+}
+
+.turnwarn{
+	cursor: pointer;
+}
+
+form{
+	margin: 5% 10%;
+}
+
+legend{
+	color: #755b4c;
+	font-family: "Arial" sans-serif;
+	font-weight: bold;
+}
+
+.orange{
+	color: orange;
+}

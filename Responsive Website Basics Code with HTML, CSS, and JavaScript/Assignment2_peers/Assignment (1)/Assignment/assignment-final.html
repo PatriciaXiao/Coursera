@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<title>Soccer Coaches</title>
+
+		<!-- import bootstrap -->
+		<link rel="stylesheet"
+			  type="text/css"
+			  href="bootstrap.css"
+		      />
+
+		<!-- import our own stylesheet -->
+		<link rel="stylesheet"
+			  type="text/css"
+			  href="arjun.css"
+		      />	
+
+		<!-- import jQuery -->
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	</head>
+	<body>
+		
+		<a 
+		href="about.html">
+			Home
+		</a>
+		 &nbsp;
+		<a 
+		href="Soccer.html">
+			About me 
+		</a>
+		&nbsp;
+		<a 
+		href="contact.html" class="greenlink">
+			Contact me 
+		</a>
+
+		</hr>
+	<div class="container">
+		<h1>Soccer Coaches</h1>
+
+		
+		<div class="row">
+			<div class="col-md-3">
+				<img id="image1" 
+				 class="level1" src="jose.png" alt="Jose Mourinho"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image2" class="level1" src="pep.jpg" alt="Pep Guardiola"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image3" class="level1" src="klopp.jpg" alt="Jurgen Klopp"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image4" class="level1" src="van gaal.png" alt="Louis Van Gaal"/> 
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-1">
+				<button id="backward">&lt;</button>
+			</div>
+			<div class="col-md-10">
+				<img id="bigImage" class="large-img" src="img_1.jpg" alt="graffittied building"/> 
+			</div>
+			<div class="col-md-1">
+				<button id="forward">&gt;</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		
+		var paused = false;
+
+		
+		$(".level1").click(function(){
+			$("#bigImage").attr('src', 
+				$(this).attr('src'));
+		});
+
+		var counter = 1;
+		
+		$("#image"+counter).click();
+
+		
+		$("#backward").click(function (){
+			
+			counter = counter - 1;
+			
+			if(counter < 1){
+				counter = 4;
+			}
+			
+			$("#image"+counter).click();
+		});
+
+		$("#forward").click(function (){
+			// go forward one in the counter
+			counter = counter + 1;
+			
+			if(counter > 4){
+				counter = 1;
+			}
+			
+			$("#image"+counter).click();
+		});
+
+		
+		$("#bigImage").click(function (){
+			paused = !paused;
+		});
+
+		setInterval(function (){
+			
+			if(!paused){
+				
+				$("#forward").click();
+			};
+		}, 5000);
+	</script>
+
+	</body>
+</html>
+
+
+
+
+
+
+

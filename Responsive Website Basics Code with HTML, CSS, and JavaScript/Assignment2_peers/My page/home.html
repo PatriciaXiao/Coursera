@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+	<title>Vishnu</title>
+    <meta charset='UTF-8'>
+	<link rel='stylesheet' type='text/css' href='bootstrap.css'/>
+	<link rel='stylesheet' type='text/css' href='mystyle.css'/>
+	<script src='jquery-1.12.0.min.js'></script>
+	</head>
+	<body>
+    <div class='width'>
+    <nav class='top'>
+    <ul>
+	<li><a class='active' href='home.html'>Home</a></li>
+	<li><a href='research.html'>Research</a></li>
+	<li><a href='blog.html'>Blog</a></li>
+	<li><a href='gallery.html'>Gallery</a></li>
+	<li><a href='apps.html'>Apps</a></li>
+	<li><a href='links.html'>Links</a></li>
+	<li><a href='contact.html'>About</a></li>
+    </ul>
+    </nav>
+    <figure>
+    <img src='home.jpg' alt='Nature scenary from Kerala' title='Kerala beautiful nature'
+    width=100%
+    /> 
+    </figure>
+    <div class='quotes'>
+    <p>"Love what you do and do what you love"</p>
+    <p>"If you actually wish something you will surely get it"</p>
+    </div>
+    <main>
+    <p class='intro'>
+    These two are my favourite quotes in life. It will be very surprising for you if I tell you how I heard these quotes. I am not so good at reading books
+    infact I get really scared and demotivated when I see a very fat book in front of me. I love watching movies. Even if people said to me many times that
+    reading books like 'Harry Potter', 'Game of thrones', 'Lord of the rings' etc. is far better than watching the movies, I prefer to watch movies just because 
+    it's too scary for me to read those numerous pages. I heard these two quotes from two Indian movies.The second quote is from my favourite hindi movie 
+    "Jab we met". I try to make these quotes into reality in my life. One such reality is this page which you are reading. This website is a result of my 
+    fascination about the programing world and the internet. Eventhough I am a lazy reader I like writing. I love writing my thoughts ,ideas and opinions in 
+    a sheet of paper. Instead of paper, this time I am going to write it on my webpage. I love science just because I like to ask questions for everything.
+    At this moment, I'm in a long journey to become a better scientist in biology so i would also like share with you about my scientific research. My interest
+    in programing helped me to develop some silly applications which I would like you to try it out and give me suggestions.
+    </p>
+    </main>
+    
+    <footer class='footer'>
+    <hr/>
+    <h3>Follow me</h3>
+    <a href='https://www.facebook.com/vishnums007' target='_blank'>
+    <img src='images/facebook.png' alt='facebook icon'
+    width='50px'>
+    </a>
+    <a href='https://twitter.com/vishnums007' target='_blank'>
+    <img src='images/twitter.png' alt='twitter icon'
+    width='50px'>
+    </a>
+    <a href='https://plus.google.com/u/0/+VISHNUMS/' target='_blank'>
+    <img src='images/googleplus.png' alt='google+ icon'
+    width='50px'>
+    </a>
+    <a href='https://www.instagram.com/vishnums007/' target='_blank'>
+    <img src='images/Instagram.ico' alt='instagram icon'
+    width='60px'>
+    </a>
+    <a href='https://www.researchgate.net/profile/Vishnu_MS' target='_blank'>
+    <img src='images/researchgate.png' alt='researchgate icon'
+    width='50px'>
+    </a>
+    <div class='like'>
+    <p>If you like my page, hit thumps up!</p>
+    <img id='like' onclick= 'count()' src='images/thumpsup.jpg' alt='Like' width='50px'>
+    <p id='likecount'></p>
+    </div>
+    </footer>
+    </div>
+    </body>
+    <script type='text/javascript'>
+    var counter=0;
+    $('#likecount').html(counter);
+    function count(){counter=counter+1;
+    $('#likecount').html(counter);}
+    </script>
+
+</html>

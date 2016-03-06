@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">	
+		<title>Patricia's Home</title>
+		<link rel="stylesheet"
+			  href="css/mybootstrap.css"
+			/>
+		<link rel="stylesheet"
+			  href="css/style.css"
+			/>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src = "js/index.js"></script>
+	</head>
+	<body>
+		<a class = "navigate" id = "home" href = "#">Home</a>
+		&nbsp;
+		<a class = "navigate" id = "about" href = "about.html">About Me</a>
+		&nbsp;
+		<a class = "navigate" id = "gallery" href = "gallery.html">Gallery</a>
+		<hr></hr>
+		<h1> Welcome </h1>
+		<div align="center">
+			<img id = "logo" class = "logostyle" src = "image/logo.png"/>
+		</div>
+		<h2 id="greeting" class="hrefwarn" onclick="mygreeting(this);">Hello There! >></h2>
+		<h2 id="starting" class="hrefwarn" onclick="mystarting();">Shall We Start? >></h2>
+		<div id = "fold" align = "center" style="display:none;">
+			<h2> You may use the navigate bar on the top to explore more.</h2>
+			<h2 class="hrefwarn" onclick="myfold();"> Fold << </h2>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+.navbar-brand {
+    font-style: italic;
+    font-family: impact;
+}
+
+.content {
+    /*height: 500px;*/
+    padding-top:50px;
+    padding-bottom: 20px;
+}
+
+.carousel {
+    padding-top: 60px;
+}
+
+.content img {
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+}
+
+.carousel-inner > .item > img {
+  width: auto;
+  max-height: 360px;
+  margin: auto;
+}
+
+#movie1 {
+    background-color: #F6F290;
+}
+
+#movie2 {
+    background-color: #F69E90;
+}
+
+#movie3 {
+    background-color: #8FBF5A;
+}
+
+#movie4 {
+    background-color: #14D4D4;
+}
+
+#movie5 {
+    background-color: #ED9ECE;
+}
+
+#movCarousel {
+    background-color: #764B8E;
+    padding-bottom: 10px;
+}
+
+.footer {
+    text-align: center;
+    height: 50px;
+    padding-top: 15px;
+    background-color: black;
+    color: gray;
+}

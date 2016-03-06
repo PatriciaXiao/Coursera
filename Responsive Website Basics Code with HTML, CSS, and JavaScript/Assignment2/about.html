@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">	
+		<title>About Patricia</title>
+		<link rel="stylesheet"
+			  href="css/mybootstrap.css"
+			/>	
+		<link rel="stylesheet"
+			  href="css/style.css"
+			/>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src = "js/about.js"></script>
+	</head>
+	<body>
+		<a class = "navigate" id = "home" href = "index.html">Home</a>
+		&nbsp;
+		<a class = "navigate" id = "about" href = "#">About Me</a>
+		&nbsp;
+		<a class = "navigate" id = "gallery" href = "gallery.html">Gallery</a>
+		<hr></hr>
+		<h1> About Me </h1>
+
+		<form>
+			<fieldset>
+				<legend>How Much Do You Know About Me?</legend>
+				<ol>
+					<li>
+						<label for = "favoritenum">My favorite positive integer less than 10:</label>
+						<input type = "text" name = "num" id = "favoritenum" pattern = "[0-9]{1}"><br/>
+					</li>
+					<br/>
+					<li>
+						<label for = "favoriteanimal">My favorite animal in the world:</label>
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "dog"> Dog
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "cat"> Cat
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "rabbit"> Rabbit
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "snake"> Snake
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "fox"> Fox
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "dolphin"> Dolphin
+						<br/>
+						<input type = "radio" name = "favoriteanimal" value = "deer"> Deer
+						<br/>
+					</li>
+					<br/>
+					<li>
+						<label for = "statement">Please check all the true statements:</label>
+						<br/>
+						<input type="checkbox" id="coke" name="coke"/>
+						<label for = "coke">I prefer Coka-Cola to Pepsi.</label>
+						<br/>
+						<input type="checkbox" id="bread" name="bread"/>
+						<label for = "bread">I don't like bread.</label>
+						<br/>
+						<input type="checkbox" id="draw" name="draw"/>
+						<label for = "draw">I am good at drawing.</label>
+						<br/>
+						<input type="checkbox" id="dance" name="dance"/>
+						<label for = "dance">I am good at dancing.</label>
+						<br/>
+						<input type="checkbox" id="sour" name="sour"/>
+						<label for = "sour">I hate sour fruites.</label>
+						<br/>
+					</li>
+				</ol>
+			</fieldset>
+
+			<br/>
+			<input type = "button" value = "Submit" onclick = "judgeshow();"/>
+		</form>
+		<hr></hr>
+		<div id = "result" style="display:none;">
+			<h2 class="orange">Result</h2>
+			<h2 id = "report"></h2>
+			<h2 id = "judge"></h2>
+		</div>
+
+	</body>
+</html>

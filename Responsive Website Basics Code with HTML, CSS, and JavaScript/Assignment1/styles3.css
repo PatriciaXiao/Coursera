@@ -1,0 +1,8 @@
+h1 {  
+  /* This line changes the font to a fantasy one */
+  font-family: fantasy;
+  /* This line adds padding all around the text */
+  padding: 10px;
+  /* This line adds a blue border around the text */
+  border: 4px solid blue;
+}

@@ -1,0 +1,91 @@
+Week 1:
+
+Design principles:
+Prototype: focus on goals and modify the prototype
+prototype is developed upon questions, there might be multiple of them
+Prototype Rights:
+- Should not be required to be complete
+- Should be easy to change
+- Gets to retire
+- You could create different prototypes to ask different questions
+- Ask questions; Used to aquire knowledge, otherwise it'll be a waste of time; ask the thornic question and learn the hard stuff first and quickly (questions such as "how big should the button be like")
+
+"The best way to have a good idea is to have lots of ideas"
+
+Release point: depend on the cost to change them
+
+How to evaluate design?
+
+-Usability Studies: (from formal to informal) common and straigntforward way to fix bugs
+shortcoming:
+ignore the physical settings around the users when they use the product
+might be nicer under the watch of the lab persons
+not knowing if the users will behave differently if provided a different interface
+have to bring people to your place
+Controlled experiment: can limit the real-world applicability when they are done in a contrived lab setting
+Survey: good at collecting responses from a lot of users, relatively easy to compare among alternatives; problem is that people's saying and doing don't always match each other
+Feedback from Experts: Peer Critique, Dogfooding, Heurtisitc Evaluation.
+
+-Participant Observation & Comparative Experiments: gaining insights by discovering actual practices, as opposed to self-report
+
+Simulation & Formal Models
+
+
+The Birth of HCI:
+
+The book - "As We May Think" Vannevar Bush (MIT->Stanford)
+future interactive desk: he called this system "Memex"
+Grace Hopper (woman): invented first compiler
+The GUI: key - MIT Lincoln Labs by Ivan Sutherland
+Mouse & Hypertext - Doug Engelbart (famous 1968 demo: mouse); Doug inspires Alan Kay; "the best way to predict the future is to invent it"; at Alan Xerox PARC start building the real GUI, released STAR computing system in 1981
+The "long nose" of innovation (Buxton)
+
+
+
+Week 2:
+
+Needfinding strategies:
+
+Participant Observation:
+observing people
+Tacit knowledge: deep hanging out
+- Pay attention to all the artifacts
+- Look for workaround and hacks
+- "Errors" are a gold mine
+- Simply asking people what they want instead of observing their behavior, would be easily distracted
+- Try & Do; Ask & Listen; Watch & Observe
+
+Interview:
+- Choosing Participants (representative of the target users; maybe current users of a similar system; might also be non-users from whom we can learn about the barrier); you may choose your family & friends to spread the "net" for you and get your subjects; approximate if necessary (you might not know the final user group); it is IMPORTANT to be CURIOUS, for it is not good to think something is obvious, or nothing to be improved about, "find the story", power and knowledge aren't the same, start in the middle instead of the top, not being too self-conscious; find out "what would you like in a tool", not ask them how would they improve it (a car, not a faster horse might be the best design); do not ask about feelings such as "like", and avoid questions such as frequencies so that interviewers won't over-estimate themselves, avoid asking people about sth. like how much they like things at an absolute scale (not reliable), and no binary(yes/no) questions; open-ended questions should be encouraged.
+- Silence is Golden: Give a quick answer, give people a few seconds (minutes?) to response
+
+Additional Needfinding Strategies:
+- Diary Studies: give people diary they complete at a specific time / interval; might be redio recording or mobile phone; features easier to record, results better; follow up and remind them; would have better results if the participants are well-trained, better than observation because the amount of data collected is much larger, for you don't need to be at present
+- Experiment Sampling /"paper studies": beep people at specific time and ask them to record something
+
+advanced users / lead users are different from other users, such as (MIT) Eric Van Hipple, e.g. "Nat rack" individual ->general; they are creative engines
+extreme users: learn from them and help everyone
+
+"Personas":
+- model of person; example
+- draw a picture of personas (background info, hope, dream, goal, a story to tell etc.)
+- help build empathy by looking into their need, feel, think...
+
+
+"All design is redesign"
+what are the pain points? what are the steps / goal/ artifacts?
+
+Challenge: we design artifacts, not activities / tasks
+
+
+
+
+Week 3: Rapid Prototyping
+
+Prototyping: Intro - Storyboards, Paper Prototypes, and Mockups
+Use Stage-Appropriate Tools
+start from low fidelity prototyping techniques
+- Storyboards: takes you from the setting to satisfaction
+- Paper Prototypes
+- Digital Mockups
+- Interactive Project with hard content (and latter on add in database to complete it)

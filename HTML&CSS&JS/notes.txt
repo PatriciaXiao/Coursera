@@ -1,0 +1,4 @@
+Week 1:
+HTML & SVG
+SVG: Graphics approach, few libraries
+HTML: Text approach, many libraries

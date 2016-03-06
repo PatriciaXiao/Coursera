@@ -1,0 +1,2 @@
+The interaction is done by Clicking on the particular image in the list of images available in the page.
+I have used the click function as taught in the class.

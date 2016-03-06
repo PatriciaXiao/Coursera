@@ -1,0 +1,258 @@
+HiWeek1:
+http://codepen.io/collection/nLPkgP/
+
+<script>
+// js code
+</script>
+
+API
+
+document.getElementsByTypeName(type)
+document.getElementById(id)
+document.getElementsByClassName(class)
+element.innerHTML
+element.style
+element.setAttribute(attribute, value)
+element.removeAttribute(attribute)
+
+Output
+print
+alert alert("hello world"); alert('hello');
+prompt prompt("input something:"); // read in a STRING
+document.write document.write("hello world"); document.write("<h1>hello world</h1>"); document.write("<h1>" + hello + "</h1>") // overwrite everything
+innerHTML element.innerHTML = "hello world"; // more advanced, combined with other methods, element is grabbed from API // assume there's only one, only change the first one if two have same id and are found by id
+console.log console.log("hello world"); //debug
+
+=
+
+== equivalent value
+=== value + type
+!=
+!=== // 12 == "12" : true
+num:
+++
+--
++=
+string:
+"Hi" + "There" = "HiThere"
+"Have" + 5 = "Have5"
++=
+
+logic operator for not: "!"
+
+comment: <!-- -->
+
+window width : window.innerWidth;
+
+object: only accessible by attributes (wg. topic.style topic.innerHTML)
+array: a.length
+
+getTitle
+getLinks
+
+
+
+
+Week 2:
+
+http://codepen.io/collection/Adbwgo/
+
+functions:
+define & call
+
+function fname(pname){
+	
+} // DO NOT put seicolon here
+
+calling functions changes the programming flow
+define once, call multiple times
+
+Javascript code could be in body / head / external file
+head: remember to add a script tag; only put functions, still necessary to call functions in body
+external code: do not use a script tag; in head: <script src = "balabala.js"></script>
+
+console is a great debugger
+HTML: main content
+CSS: styles
+JS: interactions
+using seperate folders (other than html files): js, css, images
+in HTML:
+<link rel="stylesheet" href="css/style.css">
+<script src="js/javascript.js"> or <script "something.js">
+<img src="images/myimg.jpg">
+or ".." to an upper folder e.g. background: url("../backgrd.png") in CSS file
+case-sensitive names!!!
+
+people might be working on the bad copy and find that it doesn't work
+
+call functions based on special events?
+e.g.
+onclick
+onmouseover
+onresize
+onload
+e.g. <div onclick="message()"> Click to call message() </div> // call for js function message()//use single quotes or double quotes
+// using double quotes would make it much easier to pass string functions, e.g. "message('hello')"
+
+someprogram runs in a linear order, but events cause the program to run continuously since it is kept on listening
+events could considerably slow down the page, so be careful; but they enable you to interact with the DOM
+
+Mouse Events
+Keyboard Events
+Frame Events
+
+Events:
+Modify the DOM
+Change the Style: x is an object; x.style.display="none" / "block" / x.className = "open"
+
+"this": allows an element to refer to itself
+every element in thr DOM has an automatically-generated "this"
+"this" is used inside and outside functions (but with tag of course)
+this.innerHTML
+
+set background image:
+e.g.
+background-image: url("mypic.jpg");
+background-color: #CCEECC
+
+
+
+Week 3:
+
+http://codepen.io/collection/noEJaj/
+
+http://www.cheat-sheets.org/saved-copy/jsquick.pdf
+
+Arrays:
+var a = [1, 2, 3, 4];
+var b = ['all', 'b', 'c'];
+element.getElementsByTagName['li'];
+
+elements in one array doesn't have to be the same type!
+var c = ["hello", 1, "world"];
+
+javascript arrays are objects (with special powers, have attributes, elements tend to be of the same kind)
+a.length
+a.sort()
+a.push(elem) == a[a.length] = elem
+
+innerHTML could be assigned an array
+
+iteration:
+for loop: for(j=0; j<a.length; j++){}
+you could leave value in the array empty (shown as NaN, not defined, in code undefined)
+
+nested if statement: if in if
+
+debug: syntatic / logic
+5 + 5 = 10
+'5' + '5' = '55'
+'5' + 5 = '55'
+
+
+Week 4:
+
+http://codepen.io/collection/DYydJE/
+
+Forms:
+Front End: HTML, CSS, JS
+Back End: Python, Ruby, PHP, Perl, Java ...
+at least three elements for a form:
+<form>
+    <label>
+    <input>
+label: "for"(content is the same with the input's id)-clicking on the label could activate the input field
+id could be used to access the elements directly
+input could be inside or outside the label
+input "type" represents the different experiences of user
+input "value" would be what is shown to the users
+most commonly seen attributes: type name id
+input types: textfield, radiobutton, password, checkbox, submit
+more input types: number, range, color, date
+
+name: should have one so that "value" would be assigned to it
+id: used for labels, javascript
+value: depend on the input type
+placeholder: provides suggestions, not an "official" value
+
+if tag does bot supported by HTML5 browser, it will just use a text field, but not gonna fail
+
+
+simple validation:
+the type / format of input
+How to validate?
+option 1: use new HTML5 input types (email, number, url) (the first non-valid input would be put into focus)
+option 2: use HTML5 attributes (required, placeholder, min, max, etc.)
+option 3: write your own js functions to check
+
+required: have to fill in; could trouble the developers, thus combined with "novalidate" attribute(<form novalidate>)
+
+pattern: only works with input type="text", force the user to use a specific format
+[0-9]{5}		: only numbers, five numbers
+[0-9]{13-16}	: only numbers (between 0 and 9), have to be 13~16 of them
+[a-zA-Z]+		: only numbers (a~z and A~Z), and have to be at least one of them (+ stands for)
+
+limiting number: min, max and step can place limits on number inputs
+basiclly two options are almost the same:
+input number + min max
+input text + pattern
+but pattern is much more powerful in handeling the input as a string (for example, 00000)
+
+"Cool Stuff" - Friend or Foe?
+As you are able to add additional capabilities to your forms, make sure that you aren't doing it at a cost to accessibility or usability. The pattern attribute is a great example. There are a number of great sites out there that can help you specify specific input (one of my favorites is http://www.html5pattern.com/), but if you are going to put constraints on what people can enter, make sure to give VERY specific instructions. Labels help a lot too.
+Placeholders are a nice way to provide suggestions, but don't forget that they disappear as soon as they come into focus.
+For now, just play with everything you can and add as much to your forms as you can. But when the time comes, make sure you are using these skills for good, not evil.
+http://www.html5pattern.com/
+
+becareful not to mix the whole object with the value of the object
+
+<input type="submit" onclick = "return check();">
+function check(){
+	// balabalabala
+	if (not valid)
+		return false;
+}
+
+"return check();" : don't just run, we want to know if it returns true.
+false return would make the submit stop
+every subject could return values
+
+
+normally:
+<form>
+    Formline1<br/>
+    <label><input XXX> XXX </label><br/>
+adding the label would let you be able to click on the text for selection
+
+
+Other inputs:
+checkbox: multipul- same name, different values
+radio buttons: same name, different values, only one selected at a time
+
+they have a "checked" attribute
+default selection could be set by adding
+checked = "true"
+in the DOM
+
+hidden selections / Q&As?
+obj.style.display="inline";
+obj.style.display="none";
+
+obj.setAttribute("required", true);
+obj.removeAttribute("required");
+
+
+Using Forms on Your Site
+As I mentioned earlier, the forms we are making right now are a great way to work with JavaScript, but you wouldn't want to put these forms on your page since you don't know how to deal with the information that people may send. Luckily, now that you know a little about forms you are in a great place to utilize free form builders. Many people already use Google Forms to create online forms. Another great place that I would recommend is WUFOO http://www.wufoo.com/. This site is highly recommended for deploying forms.
+http://www.wufoo.com/
+
+
+More Code Examples
+You will want to check out the CodePen examples for Week Four. There are some examples in there that will help you as you attempt to complete the next homework assignment. It is important to know that you may need to do a little bit of looking to figure it out. I would definitely start with the JS -Checkbox Example (http://codepen.io/ColleenEMc/pen/dYLEjw). The big difference is that in the homework we will be changing the value attributes on your fields.
+http://codepen.io/ColleenEMc/pen/dYLEjw
+
+
+
+JQuery:
+This short tutorial will quickly review the basics of JavaScript and then explain how people use jQuery.
+https://www.youtube.com/watch?v=HMjU2_-DWLw

@@ -1,0 +1,408 @@
+﻿http://www.dreamdu.com/css/
+http://www.w3school.com.cn/js/js_form_validation.asp
+http://www.w3school.com.cn/jsref/dom_obj_form.asp
+http://www.w3school.com.cn/tags/tag_button.asp
+
+Week1:
+
+URLs for this lecture
+
+Here are the URLs Kate will be referring to in her lecture on setting up a dev environment:
+
+At 1.57 : http://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html
+At 2.39: Plain text editors:
+TextWrangler (OSX) http://www.barebones.com/products/textwrangler/
+
+Notepad++ (PC) https://notepad-plus-plus.org/
+
+Sublime Text (OSX, Windows, Linux) http://www.sublimetext.com/
+
+Atom (OSX, Windows, Linux) https://atom.io
+
+
+
+Ctrl & S: Save
+Ctrl & R: Reload
+
+&nbsp; non-breaking space
+<hr></hr> line
+<img 
+src=""
+width="50%"
+ />
+
+ fifty percent of the whole page
+
+ or width="150px" fixed length
+
+ <a href="">
+     <img src=""/>
+ </a>
+
+ordered list
+ <ol>
+     <li>
+         Hello
+     </li>
+ </ol>
+
+ ol could also be ul (unformated list), dl (discriptive list)
+
+ <html>
+     <head>
+         <title>
+         </title>
+     </head>
+     <body> </body>
+ <html>
+
+ tend to use lower case for our tags
+
+ responsive: window size changes; looks different (using CSS)
+
+
+
+
+
+
+ Week 2:
+
+ CSS: Cascading style sheets; struct browser - exactly how it is going to display html page (HTML: content)
+ a set of instructions where you modify how some part of the document is going to be displayed
+
+http://www.dreamdu.com/css/
+
+ some basic CSS:
+ #apply to the body tag:
+ body{
+
+ }
+ #applying to the a tag:
+a{
+	
+}
+
+e.g:
+ body{
+     background: green;
+     color: white;     # font color
+ }
+ a{
+     color: gray; # a tag text color grey
+ }
+
+file.css cannot be magically found; instead, we should use a tag to link it to the html file, in metadata part, which means that we should put it inside <head>
+<link
+    rel = "stylesheet"        # relationship
+    type = "text/css"
+    href = "meow.css"
+/>
+
+fonts categories:
+Sans-Serif
+Serif
+Monospaced // mostly used as codes
+
+e.g.
+in .css:
+h1{
+	font-family: serif; // font-family: "Times new roman"; // font-family: "Times new roman" serif;
+	font-size: 10pt;
+}
+
+customising links: change the links' appearance
+
+e.g.
+# a, body, a:hover are all selectors
+a:hover: when the user is holding the mouse over a (e.g: color: black --- disappear (the vast area is black); add background: black --- pop-out)
+a:hover{
+	//text-decoration: none; // no underline --- actually should be add in a, not a:hover
+}
+
+layout control: 
+new type of construct in CSS - Coder Class
+typically:
+.whatever{
+	margin-left: 10px;
+	// margin-bottom: 25px;
+}
+usage: 
+<p class = "whatever"> The horse is running </p>
+<p>
+    <span class = "whatever">
+        The
+    </span>
+    horse is running
+</p>
+
+a{
+}
+.ga{
+}
+and <a class = "ga"> then ga would replace "a" def this time
+
+
+
+responsiveness:
+
+actually done with the ready-made responsive library called "Bootstrap"
+but now we are to look into another, foundamental way to do it: media queries
+in css file:
+@media (min-width = 100px) {
+	body{
+
+	}
+}
+
+<div> </div>
+
+two different cols:
+e.g.
+.responsive{
+	display: inline-block;
+	width: 400px;
+	border: 1px solid black;
+}
+
+// class = "indent green_class"
+
+
+
+Bootstrap:
+http://getbootstrap.com/
+load bootstrap.css as a normal css
+responsive grid
+<div> --- used for everything
+<div class = "container">
+<div class = "row">
+    <div class = "col-md-6"> // takes up 6 grids
+    </div>
+</div>
+
+could use multiple css in a html :: overriding when corruption occurs
+
+.thin_border{
+	border: 1px solid black;
+}
+
+
+
+Week 3:
+
+JavaScript Resources:
+eBook
+http://eloquentjavascript.net/
+W3School
+http://www.w3schools.com/js/
+Mozilla
+https://developer.mozilla.org/en-US/Learn/JavaScript
+
+http://www.w3school.com.cn/jsref/prop_style_backgroundimage.asp
+
+new attribute < h1 onclick="alert(hello);">
+responding to mouse clicks:
+<head>
+</head>
+
+<body>
+	<!-- The onclick attribute is the code	     
+             that happens when the element is clicked.	     
+             The value of the attribute is some	     
+             javascript code.	     
+             In this case it creates an alert 	     
+             pop up dialog
+ 	-->
+	<h1 id="title" onclick="alert('hello');" >
+			Hello
+	</h1>
+</body>
+
+The Console:
+objects represent things in the program, like documents or HTML elements.
+<head>
+</head>
+<body>
+	<!--
+ 	    In this case the onclick functions
+	    writes something to the console.
+	    The console is an object so we use the
+	    dot (.) notation to call a function
+ 	    on it
+	-->
+	<h1 id="title"
+ 	    onclick="console.log('hello');" >
+	    	Hello
+	</h1>
+</body>
+
+jQuery
+
+In this course we will be using the library jQuery to manipulate HTML DOM. While it is possible to do this in plain JavaScript, jQuery makes it much easier.
+
+The main jQuery site and download is here:
+
+https://jquery.com
+
+jQuery has very extensive documentation, which you can find here:
+
+http://api.jquery.com
+
+Having said that, the API documentation isn't the best place to start learning. The w3schools have a number of tutorials:
+
+http://www.w3schools.com/jquery/
+
+as well as the jQuery site itself:
+
+https://learn.jquery.com
+
+
+https://jquery.com/
+https://jquery.com/download/
+
+JQuery: a library that manipulating the HTML elements of a web page
+
+<head>
+   <!-- to use jQuery we need to import it like this -->
+   <script src=" http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	<!--
+ 		in this example use use jQuery to
+ 	        change the content itself.
+  	        The $ is shorthand for the jQuery function
+		 We are passing in a CSS selector which
+		 gets this element by its id.
+		 The html function sets the html content
+		 of an element
+	-->
+	<h1 id="title" onclick="$('#title').html('Goodbye');">
+ 		Hello
+ 	</h1>	
+</body>
+
+$('#title').html('Goodbye');
+$: short hand for jQuery, a function that is the same as jquery()
+'#title': argument, css selector; #: id for a particular argument
+html: function, heml element is changed
+$(".button").html("hello"); sets the the html content of all objects with class "button" to "hello"
+
+
+Script tag: <script type="text/javascript">
+
+<head>
+       <script src = "http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head> 
+
+<body>
+	<h1 id="title" onclick="sayHello()"> Hello </h1>
+</body>
+<!--
+ 	the script tag is where you can put
+ 	more complex scripts
+-->
+<script type="text/javascript">
+	
+	function sayHello() {
+		alert('Hello');
+	};
+</script>
+
+
+
+Anonymous functions:
+don't need name
+
+<head>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+</head>
+
+<body>
+    <h1 id="title" onclick="sayGoodbye();"> Hello </h1>
+</body>
+
+<script type="text/javascript">
+    function sayGoodbye(){
+        console.log("goodbye");
+        $("#title").html("Goodbye");
+        $("#title").click(function () {
+            $("#title").html("Hello");
+            $("#title").off("click");
+        });
+    };
+</script>
+
+
+Image gallery example
+
+$
+".class" -> class selector
+
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <h1 id="title" onclick="sayGoodbye();"> Hello </h1>
+</body>
+<script type="text/javascript">
+    function sayGoodbye(){
+        console.log("goodbye");
+        $("#title").hover(function(){$("#title").css("color", "red");}, function(){$("#title").css("color", "black");});
+    };
+</script>
+
+
+
+Week 4:
+
+variable: A named location in memory that you can use to store values
+var counter = 0;
+$("#number").text(counter);
+
+<!DOCTYPE html> 
+<head> 
+<script src="http://code.jquery.com/jquery-1.11.3.min.js">
+</script> 
+</head>
+<body> 
+<!-- this element will display the variable. It is empty as it will be filled from javascript. --> 
+<h1 id="number" onclick="count();"> 
+</h1> 
+<script type="text/javascript"> 
+// this is a variable, we start it at 0 
+var counter = 0; 
+// display the variable in the 
+// element "number" 
+$("#number").text(counter);
+// when this function is called it runs 
+// everything inside the curly brackets 
+function count() { 
+// firstly one is added to the variable 
+// ‘counter' 
+counter = counter + 1;
+// set the h1 element (with id “number”) 
+// with the value of ‘counter' 
+$("#number").text(counter); 
+} 
+</script> 
+</body> 
+</html>
+
+Variables in practice
+$(XXXXXX).click() -> virtual click, do the same thing as what happens when click
+
+If statement: nothing special
+
+Boolean variables: true / false
+not: !something
+
+setInterval(function, milliseconds)
+function could be function(){something}
+
+eBook:
+What does this code do? $(this).width()*0.3: calculates 30% of the width of this element
+<!-- --> html comments
+parseInt(id.slice(-1)) // the last int in string
+event.offsetX < $(this).width() * 0.3 // event is an object
+$(".something").length // all the elements that has class "something"

@@ -1,0 +1,199 @@
+Week 1:
+
+ML 
+- Grew out of work in AI
+- new capability for computers, machine learn to do things itself
+
+
+
+Supervised Learning: Proabably the most common type of ML
+"right answers" are given with data set; exsisting known answers are given within the dataset, what we gonna do is to decide the answers of some new data
+
+Regression Problem: Pridict continuous valued output (price); pridict the continuous valued attributes
+
+Classification Problem: Decrete valued output(e.g. 0 or 1 or 2, Y or N); unlike regression problems
+
+algorithm: Support Vector
+
+
+Unsupervised Learning: Here's the dataset, can you find some structure of the data?
+e.g. Cocktail Party Problem Algorithm
+
+Octave programming environment: free open source
+http://octave.sourceforge.net/
+
+
+materials:
+https://share.coursera.org/wiki/index.php/ML:Main
+https://www.khanacademy.org/#linear-algebra
+https://en.wikipedia.org/wiki/Linear_least_squares_%28mathematics%29#Derivation_of_the_normal_equations
+
+Model and Cost Function:
+Regression Problem: pridict the outcome of real-value
+Training Set
+m: number of training examples
+x's: "input"s
+y's: "output"s, targets
+(x, y): a training example
+(x(i), y(i)): the i-th training example
+Training Set -(feed to)-> Learning Algorithm -(out put a function)-> h(denoted as h, stands for Hypothesis; takes in new inputs and then will be able to estimate the output; maps from x's to y's)
+How do we represent h? h(x) / hΘ(0) (theta)
+
+Linear Regression with one variable: Univariate linear regression
+
+Cost function: how to discover the best-fit solution of the data
+linear regression:
+Hypothesis: hΘ(x) = Θ0 + Θ1x
+Θi's :(Θ0, Θ1) parameters of the model
+The square error function
+The goal is to minimize the cost function J(Θ0, Θ1, ...)
+
+Coutour Plots
+
+Parameter Learning:
+Gradient Descent: starting at some point and "take a small step toward which direction will I go 'down' as quickly as possible?"
+":=" : assignment operator
+"=" : truth assertion
+alpha: "learning rate", how big the step we take
+correct implementation: // simutaneusly update
+tmp1 := GD(Θ0) // GD adapt the value according to the deriviate at point (Θ0, Θ1)
+tmp2 := GD(Θ1)
+Θ := tmp1
+Θ := tmp2
+if alpha is too large, we can fail to converge, or even diverge
+already at a local minimum: unchange
+alpha could be fixed, no need to decrease, because the "step" is meant to be smaller and smaller
+step depends on the derivatives of J(Θ0, Θ1)
+
+Convex Function: like a linear regression; always a "bowl-shape"
+
+"Batch" Gradient Descent: each step uses all the training examples 
+
+Normal Equation Method: no need to ML; but with larger steps, GD is better
+
+
+
+Linear Algebra Review:
+
+Matrix: dimension; written as number of rows X number of colums (dimension is R by C); A12 for the row 1 col 2 of matrix A
+Vector: a N X 1 matrix
+R 3X2: all aD M with 3 X 2
+R 4: all vectors with 4 row
+1-index vector (index start from 1) and 0-index vector
+
+Addition and Scalar Multiplication:
+addition / subtraction: corresponding numbers add to / subtract from each other
+scalar: scalar number is a real number that apply to everything in the matrix accordingly
+
+Matrix Vector Multiplication: 
+Mab X Vb = Va: Ri = ∑Mij * Vj
+Normally we say, A X x = y
+y = Θ0 + Θ1 * x
+=>
+x: m * 2, xi1 = 1, xi2 = data
+A: 2 * 1, a1 = Θ0, a2 = Θ1
+Prediction = Data * Parameter
+
+Matrix Matrix Multiplication:
+Xab * Ybc = Zac
+Zij = ∑Xik * Ykj
+
+Usage: comparing different hypothesis by making the matrix A's each col a solution of (Θ0, Θ1)； outcome will be the prediction
+
+Matrix Multiplication Properties:
+not commutative (A X B != B X A)
+associative (A X B X C = A X (B X C))
+Identity Matrix: I (Iij = 0 if i != j, = 1 if i == j); AI = IA = A
+
+Inverse and Transpose:
+Inverse: 
+A is a m X m matrix (square matrix), if it has an inverse A(-1); A*A(-1) = I
+only square matrix have inverse
+Transpose: row index <--> col index
+
+octave:
+A = [1 2; 3 4] (1, 2) is what inside the first row
+pinv(A) : inverse
+A * B: mul
+matrix who don't have an inverse: singular matrix / degenerate matrix
+
+
+
+
+Week 2:
+
+Matlab Online!
+https://matlab.mathworks.com/
+
+Multiple Features (variables):
+n : number of features
+x(i): input features of the i-th input (training example)
+xj(i): the j-th feature of x(i)
+Hypothesis: hΘ(x) = Θ0 + Θ1x1 + Θ2x2 + ...
+for convenience: x0 = 1 (additional x0 feature)
+define vector Θ and vector X
+Θ(^T)X : hΘ(x)
+cost function: J(Θ) = J(Θ0, Θ1, ...) = 1/2m * alpha * ∑(i = 1~m)(hΘ(x(i)) - y(i))^2
+repeat: Θj := Θj - ∂J(Θ)/∂Θj
+Θj := Θj - ∂J(Θ)/∂Θj = Θj - 1/m * alpha * ∑(i = 1~m)(hΘ(x(i)) - y(i)) * xj(i)
+
+Feature Scaling:
+Feature scaling speeds up gradient descent by avoiding many extra iterations that are required when one or more features take on much larger values than the rest.
+improper scaling might lead to too much troubles: we can get every feature into an approximately [-1, 1] range (-1, 1 could be changed, 2, 3, 0 would be fine, but like 100, would be too large to be proper, so as 0.001 poorly schaled)
+
+mean normalization: 
+replace xi with xi - μi (do not apply to x0 = 1): μi is the everage of xi in the training set
+make features have approximately zero mean
+and divide (xi - μi) with Si: Si is the range of value, (max - min; standared deviation would be fine, too)
+
+If GD works correctly, J should decrease after each iteration
+if not working, choose a smaller alpha; but if alpha is too small, it'll be slow
+
+Features and Polynomial Regression:
+
+If the features are depending on each other, we can redefine new variables to improve the model
+cubic model could be represented just like the linear regression model, but x1 = a, x2 = a^2, x3 = a^3; if you do so, feature scaling would be extremely important so that they'll be at approximately same range; for example, without mean normalization, we could let it be xi = func(ai) / func(max - min)
+
+Computing Parameters Analytically:
+
+Normal Equation V.S. GD
+
+intuition: the simple case is to solve the function and make the derivative of theta becomes zero
+X: M(m x (n + 1))
+y: M(m-d vector)
+Θ = (((x^T)X)^(-1))(X^T)y
+// Octave: pinv(x' * x) * x' * y
+
+Normal Equation: no need to do feature scaling; otherwise (GD) feature scaling is important
+
+GD: 
+have to choose alpha, have to iterate
+work well when n is large
+universally useful
+NE: 
+no need of alpha, no need to iterate
+have to calculate (x' * x) so become really slow when x grows large O(n^3) large(approximately) : thousand
+couldn't apply to all 
+
+
+Assignment ref:
+https://www.coursera.org/learn/machine-learning/discussions/vgCyrQoMEeWv5yIAC00Eog
+http://octave.sourceforge.net/octave/overview.html
+answer:
+http://www.cnblogs.com/CheeseZH/p/4597006.html
+
+% A = [16 2 3 13; 5 11 10 8; 9 7 6 12; 4 14 15 1]
+% A = [1 2 3; 4 5 6; 7 8 9]
+
+Octave Tutorial
+
+== : equals
+~= : not equal
+xor(1, 0)
+PS1(">> ") : change the appearance of the CLI
+c = (3 > 1) // then c will be 1 
+s = "str" // then s will be a string with content "str"
+a = pi // then a will be 3.1416 
+disp(a) will print a
+disp(sprintf('content text %0.2f', a)) will show "content text 3.14"
+// mixed with old-style C
