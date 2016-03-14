@@ -89,3 +89,25 @@ start from low fidelity prototyping techniques
 - Paper Prototypes
 - Digital Mockups
 - Interactive Project with hard content (and latter on add in database to complete it)
+
+Story Board should contain:
+- Setting:
+---- People Involved
+---- Environment
+---- Task to be accomplished
+- Sequence:
+---- Steps Involved
+---- What leads someone to use it
+---- Task being Illustrated
+- Satisfaction:
+---- What motivates people to use the system
+---- What does it enables people to accomplish
+---- What need does the system fill
+
+emphasizes how to "accomplish" a task; not to stick to particular interface
+
+paper interface: could rapidly change
+
+Wizard of Oz Prototyping (tests): cheap and fast, requires some interface, not necessarily coding
+earlier stage: paper would be the best
+

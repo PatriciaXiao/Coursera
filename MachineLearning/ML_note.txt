@@ -197,3 +197,238 @@ a = pi // then a will be 3.1416
 disp(a) will print a
 disp(sprintf('content text %0.2f', a)) will show "content text 3.14"
 // mixed with old-style C
+add a semicolon and the command line wouldn't print out a thing
+A = [1 2; 3 4] // ; == go to the next row
+equivalent to:
+>> A = [1 2;
+>> 3 4]
+if we do this: v = a:b:c
+then v = [a a+b a+2*b ...... c]
+v = 1:5
+then v = 1 2 3 4 5
+ans = ones(2, 3) then ans = [1 1 1; 1 1 1]
+zeros(1, 3) then [0 0 0]
+rand(2, 3) then all random numbers(0~1) in a 2 X 3 array
+randn(x, x) then normal random (around 0)
+sqrt(a) = square root
+hist(w) %plot
+hist(w, 50) %plot with 50 bins
+eye(x): x X x matrix of I
+help: help eye / help rand / help help
+
+moving data around:
+size(A): returns a 1 * 2 matrix (n_row, n_col)
+size(A, 1): n_rows in A
+size(A, 2): n_cols in A
+length(A): return the longer one in n_col and n_row of A
+
+pwd: returns the path; and could use cd / ls as cmd
+who: variables already in the memory of current scope
+whos: details
+
+load readme.dat / load('readme.dat')
+
+clear A % clear it from memory
+
+v = vectorY(1:10) % first 10 elements of vectorY
+
+clear % clear all
+
+save hello.txt v -ascii % save a human readable file
+
+A(3, 2) % A_32
+A(3, :) % everything in the 3rd row
+A(:, 2) % everything in the 2nd col
+A([1 3], :) % from row 1 and 3 and all cols
+
+the above expressions could also be used to assign variable values
+
+A = 
+1 2
+3 4
+5 6
+A = [A, [7; 8; 9]] % append another col vector to the right
+then A=
+1 2 7
+3 4 8
+5 6 9
+
+A(:) put all elem in A into a single vector (by col)
+
+C = [A B] % concatenating matrix A and B onto each other (A on the left, B on the right)
+
+C = [A; B] % A on top, B on the bottom
+
+C = A .^ B; % C(i, j) = A(i, j) * B(i, j); could be also implemented as A .^2 if A == B
+
+B = 1 ./ A % u(i) = 1 / A(i, j)
+
+others: log(v), exp(v) /* e^v */, abs /* absolute value */, +1 / + ones( , ), sum(A) /* sum of all elements */, prod(A) /* product of all elements */, floor(A) /* rounds down */, ceil(A) /* rounds up */; flipud(A) /* turn upside down */
+
+val = max(A) ; [val, index] = max(A)
+
+A < 3: boolean matrix
+find(A < 3): return the indexx
+
+magic(3): a 3-by-3 special matrix; each row / col/diag has the same sum
+
+max(A, B) % pick the bigger one of corresponding position of A & B
+max(A, [], 1) % max of each col
+max(A, [], 2) % max of each row
+max(A) max of each col; max(max(A)) /* the real max */
+
+sum(A, 1) % sum each col
+sum(A, 2) % sum each row
+
+flipud(A) /* turn upside down */
+pinv(A) % inverse of A
+
+Plotting (Visualizing) Data
+y1 = function1(x)
+y2 = function2(x)
+plot(x, y1)
+plot(x, y2)
+if want to show them together, plot(x, y1); hold on; plot(x, y2)
+% hold on: no new graphs
+plot(x, y, 'r')  % r: event color
+xlabel('x-name')
+ylabel('y-name')
+legend('sin', 'cos') % show legend to indicate which is what
+title('my plot') % want a title
+print -dpng "mywork.png" % print the result out
+help plot / help print % could help
+close; % close the plot
+figure(1); plot(...);
+figure(2); plot(...); % open two figures
+subplot: make multiple plots on one figure
+axis([ 1 2 3 4 5]) % change the x indexs
+clf; % clear the last figure
+
+visualization:
+imagesc(A)
+imagesc(A), colorbar, colormap gray;
+
+statement 1, statement 2, statement 3 % comma chaining / chaining of commands
+
+Control Statements: for, while, if statement
+for i = 1:10, % for (i = 1; i <= 10; i++)
+    statement1;
+end; % could use break / continue; could also assign 1:10 to j then for i = j
+i = 1;
+while i <= 10,
+    statement1;
+    i = i+1;
+end;
+if i == 1,
+    st1;
+elseif i == 2,
+    st2;
+else
+    st3;
+end;
+
+in Octave function name should be the file name (.m) // and the first line is function y = FunctionName(x) // y is the return value, when multiple, do [y1, y2]
+and functions ould be directly used in cmd
+addpath('C:\.......') makes it possible to acceess files in different directories
+
+Vectorization: make your program runs faster
+
+use libraries: more efficient, less coding // also similar libraries and functions in C++ or so
+use vectors and existing functions rather than implement the process yourself
+// P.S. Octave index start from 1, not 0 by default
+
+pinv: invert even if X is non-invertable
+inv: real invert
+
+causes to be non-invertable: 
+- redundant data
+- too many features (delete some or do regularization)
+
+Week3: 
+use proxy to submit
+ZYQLHaWEqxfLqeaw
+
+Classification and Representation:
+
+Classification:
+y = 0 or 1 (negative class / positive class)
+later: multi-class classification (0, 1, 2, 3, etc)
+linear regression isn't a good solution to classification problem
+
+logistic regression: hΘ always in the range [0, 1]
+Hypothesis Representation:
+linear: hΘ(x) = Θ' * x
+now: hΘ(x) = g(Θ' * x)
+g is sigmoid function / logistic function
+g(z) = 1/(1 + e^(-z))
+hΘ(x): means the possibility that y = 1 on input x; normally if it is >= 0.5 then we assume y to be 1 (that is z >= 0)
+
+Decision Boundary: the line we draw that devide the different categories; might be non-linear----then add xi^2 (x1^2, x2^2), xi^3, etc.
+
+convex: guarantee to converge to the global minimum
+J = (1 / m) * ∑(Cost(h(x), y))
+so, cost function would be: 
+Cost(hΘ(x), y) =
+-log(hΘ(x)) (if y = 1)
+-log(1 - hΘ(x)) (if y = 0)
+an equivalent way: Cost(hΘ(x), y) = -y * log(hΘ(x))-(1 - y) * log(1 - hΘ(x))
+// the principle of the maximum lkelihood estimation
+// still using Θj = Θj - alpha*derivative to update
+// hapen to be the same as linear regression sum((h(x) - y)x) * alpha
+
+Advanced Optimization (other than gradient descent: faster, scalable; no need to pick alpha; but more complex)
+e.g.
+conjugate gradient
+BFGS
+L-BFGS
+
+use libraries; good libraries and bad libraries are very different, try and choose good ones
+in octave:
+fminunc
+
+parameter could be function (start with @)
+
+
+Multiclass Classification: One-vs-all (/ one-vs-rest)
+
+make a prediction by choose the greatest hΘ^i(x) and decide that the class is i
+
+http://www.68idc.cn/help/mysqldata/DB2/20150807486162.html
+http://www.cnblogs.com/CheeseZH/p/4600837.html
+http://blog.csdn.net/yunlong34574/article/details/8928089
+
+
+
+Solving the Problem of Overfitting
+
+regularization
+
+under fit = high bias
+over fit = high variance => too many features and not many training examples; fit the training set but fail on new examples
+
+solution:
+1. reduce number of features
+-- Manually select
+-- Model Selection Algorithm
+2. Regularization
+-- Keep all the features but reduce the magnitude / value of parameters Θ; work well with many parameters
+
+Regularization:
+try to give simpler hypothesis by making Θ3, Θ4, etc. close to zero; less prone to overfitting
+J plus (1 / 2m) * λ(∑(Θ^2)) // Θ0 in linear regression should not be treated here !!!
+λ: regularization parameter
+
+each iteration of Θ:
+Θj minus alpha*(λ/m)*Θj // linear
+Normal Equation:
+X: (m * (n + 1))
+A: (n + 1) * (n + 1), looks like I (/ E), except that A11 = 0
+y: R^m
+Θ = (((X^T)X)^(-1))(X^T)y
+=>
+Θ = (((X^T)X + λ*A)^(-1))(X^T)y
+// WON'T be non-invertable
+
+Logistic Regression:
+add to J: (λ / 2m) * ∑(Θ^2) // still, Θ0 won't be included
+Θj minus alpha*(λ/m)*Θj // each step
