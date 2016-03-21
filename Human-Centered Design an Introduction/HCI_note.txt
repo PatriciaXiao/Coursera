@@ -110,4 +110,63 @@ paper interface: could rapidly change
 
 Wizard of Oz Prototyping (tests): cheap and fast, requires some interface, not necessarily coding
 earlier stage: paper would be the best
+- Map out scenarios and application flow (interactive)
+- Put together interface "skeletons"
+- Develop "hooks" for wizard input
+- Where and how the wizard will provide input (actions / what kind of input; to be replaced by computer)
+- Rehearse wizard role with a colleague
+e.g. Aardvark
+Running Wizard-Powered Prototypes:
+- Friend -> User
+- Two Roles: Facilitator (provides tasks (paper), take notes); Wizard (operate interface)
+Video Prototyping: a protoyyping method
+- Cheap & Fast
+- Communicating ideas (could be informal brainstorm or could be quite formal)
+- A 'spec' for developers
+- Tie interface design to tasks
+- Like a Storyboard, a whole task, including motivation and success
+- Help create a minimum-variable product based on tasks
+- Change the way the team discuss
+- Should try to use as much as possible the real context of use (people, location)
 
+Creating and Comparing Alternatives: Steven Dow
+Quality vs. Quantity: quantity - learn from mistakes; quality - seek for perfection and theory
+people always pick up one solution early on and stick to it
+Functional Fixation
+force people to come up more ideas: parallel design prototyping; Parallel Prototyping is better than Serial one for it makes people more creative, yield better results; for more clicks --- Share Multiple > Share One > Share Best
+
+
+
+Week 4:
+
+Heuristic Evaluation: a technique (Jakob Nielsen)
+having a small set (3-5) of evaluaters examine the UI, each independently check for compliance with usability principles (Heuristics), different evaluators will find different problems, not to communicate until afterwards (and the findings are then aggregated); may miss problem and find "false possitive"
+
+it is a way of peer critiques: useful; not to waste the user
+
+https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/
+
+seperate listing, do not repeat, do not let people simply say that they don't like it
+
+severity rating: (frequency, impact, persistence would be combined)
+- independently estimate after review 
+- allocate resources to fix problems
+- estimate need for more usability effort
+
+Visibe
+- Show: Time; tell the users that the process is undergoing
+- Show: Space (run out of space)
+- Show: Change
+- Show: Action
+- Show: Next Steps
+- Show: Completion
+
+Familiar Metaphore / Languages
+- also Familiar Categories, Choices
+
+User Control & Freedom: the amount that they could control should be reasonable
+
+Consistency & Standard
+- Bottoms at consistent locations
+- Consistent Names (e.g. business categories are different from user categories)
+- 

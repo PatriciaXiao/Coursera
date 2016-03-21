@@ -432,3 +432,53 @@ y: R^m
 Logistic Regression:
 add to J: (λ / 2m) * ∑(Θ^2) // still, Θ0 won't be included
 Θj minus alpha*(λ/m)*Θj // each step
+
+
+
+Week 4:
+Neural Networks: Representation
+
+motivation:
+Non-linear Hypotheses:
+multiple features -> all the quadratic terms: would be too many of them; inefficient (N too large)
+Origin: try to mimic the brain
+
+The "one learning algorithm" hypothesis: cortex learn different thing if you modify it; neuro-rewrite experiment; sensor signal -> brain learn how to deal with them
+
+Neural Networks:
+
+Model Representation:
+
+natural neuron: Dendrite "input wires"; "Axon" output wires
+neuron model: logistic unit
+
+x0: bias unit / bias neuron (always 1)
+
+Sigmoid function = logistic activation function
+
+Θ: weight / parameter (Θ(j) matrix of weight controling function mapping from layer j to layer j+1)
+
+layer 1: (x0,) x1, x2 (original input)(input layer)
+layer 2: (a0,) a1, ... (not input not output: hidden layer) (a_i(j): "activation of a(i) in layer j")
+final layer: output layer
+if there are s(j) units in layer j and s(j + 1) units in layer j + 1 then Θj will be a s(j + 1) * (s(j) + 1) matrix
+
+a_i(2) = g(∑(Θ_ij(1)xj)) (i = 1 2 3, j = 0 1 2 3)
+x = [x0; x1; x2; x3]
+z(2) = [z_1(2); z_2(2); z_3(2)] // z_i(2) = ∑(Θ_ij(1)xj)
+z(2) = Θ1 * x
+a(2) = g(z(2))
+a0(i) = 1 // not necessarily added
+forward propagation
+
+could be other architechtures
+
+if a >= 4.6 g(a) = 0.99 (1)
+if a <= -4.6 g(a) = 0.01 (0)
+
+multi-class classification: multiple outputs (one 1, others 0 would be the best case)
+
+ex3:
+http://www.cnblogs.com/CheeseZH/p/4601911.html
+http://blog.csdn.net/garfielder007/article/details/49979563
+http://blog.csdn.net/hgaolbb/article/details/44678291
