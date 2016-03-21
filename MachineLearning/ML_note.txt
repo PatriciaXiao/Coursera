@@ -482,3 +482,4 @@ ex3:
 http://www.cnblogs.com/CheeseZH/p/4601911.html
 http://blog.csdn.net/garfielder007/article/details/49979563
 http://blog.csdn.net/hgaolbb/article/details/44678291
+http://octave.sourceforge.net/docs.html
