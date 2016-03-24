@@ -166,7 +166,57 @@ Familiar Metaphore / Languages
 
 User Control & Freedom: the amount that they could control should be reasonable
 
-Consistency & Standard
+Consistency & Standard: users shouldn't need to worry about whether different things have the same meaning
 - Bottoms at consistent locations
 - Consistent Names (e.g. business categories are different from user categories)
-- 
+- Be aware of which terminology the users use naturally; A way to do it is to let users input "other"
+- Specific choices might be better than that of "Yes"/"No" or "Ok"/"Cancel"
+
+Error Prevention
+- Prevent Data Loss (e.g. warn when overwrite)
+- Prevent Clutter (Cluttering Duplicates - recorded twice)
+- Prevent Confusing Flow (e.g. choices with vague meanings)
+- Prevent Bad Input (e.g. Format, range)
+- Prevent Unnecessary Constraints (avoid being that "you must select ... to begin your searching")
+
+Recognition Over Recall
+- Create things easily retrievable or instructions visible, so as to minimize the user's memory load; users shouldn't have to remember information from one place (part of the dialogue) to another
+- Recognition: avoid codes
+- Recognition: avoid extra hurdles
+- Recognition with Previews
+
+Flexibility & Efficiency
+- Flexible Shortcuts (e.g. Keyboard Shortcuts)
+- Flexible Default with Options (e.g. let the users be able to input the content of "others")
+- Flexible: Ambient Information (e.g. weather)
+- Flexible proactivity (clear, efficient interface)
+- Flexibility: Recommendations (e.g. what other products you might also interested in)
+- Flexibility: Keep it Relevant (e.g. links on the buttom)
+- could be an extension of minimalism
+
+(Minimalism)
+Aesthetic & Minimalist Design
+- Minimalism: "Above the fold" (view one screen at a time, this is what we call the view on the top of the index page - the idea is from the newspaper; better to have core information there)
+- Minimalism: Signal-to-Noise (too many information for no apparant purpose / too many different colors) (other information = noise, should be stripped out)
+- Minimalist Login (the easier and clearer, the better)
+- Minimalism: Redundancy
+- Minimalism: Functionality
+
+Recognize, Diagnose, & Recover from Errors: help people do so
+- Errors: make the problem clear (highlight the specific error made)
+- Errors: provide a solution
+- Errors: show a path forward
+- Errors: propose an alternative
+- Recognize Errors
+
+Help
+- help & documents
+- Help learning with examples
+- Help choices with examples
+- Help guide the way (tell you where the problem is)
+- Help Show the Steps (e.g. PSE: Adobe Photoshop Elements)
+- Help point things out (New trent: combine Help directly into the user interface)
+- Help provide more information (e.g. while a checkbox is checked, shown more lines)
+- Help clearly
+- Help people have fun
+
