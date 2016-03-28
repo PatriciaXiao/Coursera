@@ -483,3 +483,76 @@ http://www.cnblogs.com/CheeseZH/p/4601911.html
 http://blog.csdn.net/garfielder007/article/details/49979563
 http://blog.csdn.net/hgaolbb/article/details/44678291
 http://octave.sourceforge.net/docs.html
+
+
+
+Week 5:
+
+Lesson 1: Cost Function and Backpropagation
+
+Classification:
+data: {(x^(1), y^(1)), ...}
+L: total number of layers
+S_l: total number of units (not counting bias units) in layer l
+binary classification: 1 output unit (y = 0 or 1)
+multi-class classification(K classes): K output units [0, 0, ... 1, 0]
+
+Cost Function:
+
+for logistic regression: 
+J(Θ) = -1/m * [∑(i = 1~m)y^(i) * log(hΘ(x^(i)) + (1 - y^(i)) * log(1 - hΘ(x^(i)))] + lambda/(2*m) * ∑(j = 1~n) (Θ_j)^2
+// not counting in Θ0
+
+Neural Network:
+(hΘ(x))_i = ith output
+L layers, K outputs
+J(Θ) = -1/m * [∑(i = 1~m) * ∑(k = 1~K) * y_k^(i) * log(hΘ(x^(i))_k + (1 - y^(i)_k) * log(1 - hΘ(x^(i))_k)] + lambda/(2*m) * ∑(l = 1~L-1)∑(i = 1~s_l)∑(j = 1~s_(l+1)) ((Θ_ji)^(l))^2
+
+Backpropagation Algorithm: used to minimize the cost function
+a(1) = x
+z(2) = Θ(1)a(1)
+a(2) = g(z(2)) // add a_0(2)
+z(3) = Θ(2)a(2)
+a(3) = g(z(3)) // add a_0(3)
+Gradient Computation: Backpropagation Algorithm
+δ_j^(l): error of node j in layer l
+// assume L = 4 then
+δ_j^(4) = a_j^(4) - y_j
+δ^(3) = ( (Θ^(3))^T * δ^(4) ) .* g'(z^(3)) // a(3) .* (1-a(3))
+so does δ^(2)
+if lambda = 0 then derievative of J(Θ) according to Θ_j^(l) = a_j(l) * δ_j(l + 1)
+Backpropagation Algorithm:
+Set Δij(l) = 0 (for all i, j, l)
+For i = 1 to m:
+	Set a(1) = x
+	Perform forward propagation to computer a(l) for l = 2, 3, ... L
+	Compute δ(L) using y(i)
+	Compute δ(L - 1) to δ(2)
+	Δij(l) = Δij(l) + a_j(l) * δ_i(l + 1)
+	// that is to say:
+	// Δ(l) = Δ(l) + a_j(l) * δ_i(l + 1)
+	If j != 0 then:
+		Dij(l) = 1/m * Δij(l) + λ * Θij(l) // λ is lambda
+	Else:
+		Dij(l) = 1/m * Δij(l)
+	// Dij(l) is the deriviative of J(Θ) by Θij(l)
+// {(x1, y1), (x2, y2)} in this order: FP using x1, BP using y1, FP using x2, BP using y2 // FP = forward propagation; BP = backward propagation
+
+if only one output layer:
+δj(l): error of cost of aj(l) // unit j in layer l
+cost(i) = y(i)log(hΘ(x(i))) + (1- y(i))log(hΘ(x(i)))
+Formally, δj(l) is the derievative of cost(i) according to zj(l)
+
+Implementation Note: Unrolling Parameters
+DVec = [D1(:); D2(:); D3(:)]
+reshape(DVec(1:110), 10, 11)
+unroll to pass parameters into fminunc
+
+Gradient Checking:
+FP & BP: bug-checking
+
+Random Initialization: symmetry breaking
+because zero initialization for Θ isn't useful in neural network
+ 
+Putting It Together:
+default: 1 hidden layer; or if hidden layer > 1, same number of units in each layer (and usually, the more the better)
