@@ -556,3 +556,20 @@ because zero initialization for Θ isn't useful in neural network
  
 Putting It Together:
 default: 1 hidden layer; or if hidden layer > 1, same number of units in each layer (and usually, the more the better)
+Training a Neural Network:
+1. randomly initialize weight
+2. implement forward propagation to get hΘ(x(i)) for any x(i)
+3. compute cost function J(Θ)
+4. implement backward propagation to get partial derivatives (Θjk(l) to J(Θ))
+5. gradient check: compare the result (partial derivative) with J(Θ)'s gradient // Then disable GC code, for it'll be otherwise really slow
+6. minimize J(Θ) (using gradient descent or advanced optimization)
+
+EX4:
+https://github.com/vgoklani/Stanford-Machine-Learning
+http://www.cnblogs.com/CheeseZH/p/4608129.html
+
+Example: Autonomous Driving
+
+
+
+Week 6:
