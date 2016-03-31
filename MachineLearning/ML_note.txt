@@ -572,4 +572,138 @@ Example: Autonomous Driving
 
 
 
-Week 6:
+Week 6: Advice for Applying Machine Learning & Machine Learning System Design
+
+Lesson 1: Evaluating a Learning Algorithm
+
+Debugging a learning algorithm:
+- get more training examples
+- try smaller set of features
+- try getting additional features
+- try adding polynomial features
+- try decreasing λ
+- try increasing λ
+
+Machine Learning Diagnostic: A test you can run to gain insight what is/ isn't work with learning algorithm, and gain guidiance as to how best to improve its performance
+Diagnostics might spend time to build, but it's worthwhile
+
+Evaluating a Hypothesis: how to evaluate it?
+1. randomly split the dataset into two portions: training set & test set (typically 7:3)
+2. learn from training set minimizing J(Θ)
+3. compute test set error J_test(Θ) // square error; compute test set error with Θ given; misclassification error, etc.
+
+Model Selection and Train/Validation/Test Sets
+
+Model Selection problem: x?x^2?x^3? ...
+calculate the parameter Θ for each of the alternatives and then compare test error.
+
+we can devide the dataset into three parts:
+training set:
+cross validation set:
+test set:
+// typically 6:2:2
+
+training error, cross validation error (J_cv(Θ)) and test error are quite similarly calculated
+usage: training set->get Θ, but measure the hypothesis with the lowest J_cv(Θ); save away the test set for evaluation (could be evalated on test set!)
+
+
+Bias vs. Variance
+
+Diagnosing Bias vs. Variance
+high bias: underfit; J_train and J_cv would both be high
+high variance: overfit; J_train low, J_cv >> J_train
+
+Regularization and Bias/Variance:
+large λ: underfit (high bias), J_train high, J_cv high
+intermediate λ: just right, J_train okay, J_cv high
+small λ: overfit (high variance), J_train low, J_cv high
+
+How to decide λ?
+J_train(Θ) no longer the same as J(Θ); instead we have the J_train(Θ) as J(Θ) with λ === 0
+J_cv nd J_test are all the similar with J_train
+try different alternatives of λ values to minimize J(Θ), and use the J_cv(Θ) to evaluate it
+pick the best Θ according to cv and test on test set J_test
+
+Learning Curves: an useful thing to plot
+error - m (training set size)
+plot J_train or J_cv
+J_train would grow as m grows
+J_cv would fall as m grows
+if high bias: J_train would end up close to J_cv
+if high variance: J_train grows really slow, J_cv would remain high; large gap
+
+High bias: getting more training data would not help much by itself; usually not many parameters, usually large lambda
+High validation: getting more training data is likely to help; usually too much parameters, usually small lambda
+
+So what to do next?
+- get more training examples		: for high variance
+- try smaller set of features		: fixes high variance
+- try getting additional features	: fixes high bias
+- try adding polynomial features	: fixes high bias
+- try decreasing λ					: fixes high bias
+- try increasing λ					: fixes high variance
+
+neural networks:
+"small": underfit, simpler and cost less to calculate
+"large": more prone to overfit, more parameters
+
+ex5:
+https://www.coursera.org/learn/machine-learning/discussions/vgCyrQoMEeWv5yIAC00Eog
+when forgotten to replace lib, youshould re-logon to Octave
+http://www.cnblogs.com/CheeseZH/p/4673488.html
+https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/linear-regression/mlclass-ex5
+
+
+Lesson 2: Machine Learning System Design
+
+Building a Spam Classifier
+
+Prioritizing What to Work On:
+supervised learning: x = features of the email (e.g. key words have 1 / not have 0)
+How to make it has lower error?
+- Collect lots of data (e.g. "honeypot" project)
+- Develop sophisticated features based on email routing information (from email header)
+- Develop sophisticated features for message body (e.g. deal and Dealer, features about punctuation)
+- Develop sophisticated algorithm to detect misspelling
+
+Error Analysis
+Recommended approach:
+- Start with simple algorithm that you can implement quickly, and test it on cross-validation data
+- Plot curves to decide if more data & more features, etc. are likely to help
+- Error Analysis: manually examine the examples in cv dataset where the algorithm made errors on; see if you plot any systematic trend in what type of examples it is making errors on // may be useless; should try and see if it works
+
+the importance of numerical evaluation
+// can use "stemming" software (e.g. "Porter stemmer") // might lead to worse performance
+
+Error Metrics for Skewed Classes:
+less error isn't necessaryly better performance e.g. always y = 0
+
+precision / recall
+true/false (true: actual == predicted) + positive/negative (positive: predicted y == 1, called skewed classes)
+precision = true_positive / predicted_positive
+recall = true_positive / actual_positive
+
+high precision or high recall:=> a good classifier
+
+usually y = 1 is used for rare class that we would like to predict, while 0 stands for the general cases
+
+For reference:
+Accuracy = (true positives + true negatives) / (total examples)
+Precision = (true positives) / (true positives + false positives)
+Recall = (true positives) / (true positives + false negatives)
+F1 score = (2 * precision * recall) / (precision + recall)
+
+Trading Off Precision and Recall:
+predict y = 1 only if very confident: raise the threshold of h (rather than 0.5), higher precision but lower recall
+other wise (avoid false negative): lower the threshold of h, high recall but low precision
+
+F1 score (F score): help you decide which algorithm is better according to precision and recall values
+F = 2 * PR/(P + R) // if P = R = 0 then F = 0
+measure on CV set and choose the threshold with the highest F
+
+
+Using Large Data Sets:
+when getting a lot of data would help?
+- useful test: given x, human expert could predict y; have sufficient information about the result to conclude
+- use a large data set makes it unlikely to overfit; an algorithm who has many parameters, or any other overfitting/high variance cases would be helped by it
+- 
