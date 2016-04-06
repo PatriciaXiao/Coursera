@@ -706,4 +706,108 @@ Using Large Data Sets:
 when getting a lot of data would help?
 - useful test: given x, human expert could predict y; have sufficient information about the result to conclude
 - use a large data set makes it unlikely to overfit; an algorithm who has many parameters, or any other overfitting/high variance cases would be helped by it
-- 
+
+
+
+Week 7: Support Vector Machines
+
+Large Margin Classification:
+
+Optimization Objective:
+by now: supervised learning
+
+SVM: sometimes a more powerful way to learn non-linear functions
+
+alternative way of logistic regression: use straight lines instead (make it simpler)
+z = Θ^T * x
+cost_0(z): when y = 0, cost-x plot (the line is replaced by similar straight version)
+cost_1(z): when y = 1
+J = C * [∑(i=1~m) (y^(i) * cost_1(Θ^T * x^(i)) + (1 - y^(i)) * cost_0(Θ^T * x^(i)))] + 1 / 2 * ∑(j=1~n) Θ_j^2 // C could be the same as 1 / lambda
+goal: min(J)
+h_Θ(x) = 1 if z >= 0 and 0 if z < 0
+
+Large Margin Intuition:
+
+people sometimes talk about SVM as Large Margin classifier
+
+safty margin factor:
+imagine the straightlines turn at -1, 1
+if y = 1 we want z >= 1 (not just 0)
+if y = 0 we want z <= -1 (not just 0)
+
+if C is too large it'll fail to left out outliers properly, ending up in a bad solution
+
+Mathematics Behind Large Margin Classification
+Vector Inner Product:
+||u|| = length of vector u; norm
+p = the length of the projection of vector v onto vector u; // cos(<u,v>) * ||v||
+u^T * v = p * ||u||
+= v^T * u
+= u1v1 + u2v2
+1 / 2 * ∑(j=1~n) Θ_j^2: it is the length's square of Θ (Θ=[Θ_1; Θ_2; ...])
+z = p(i) * ||Θ||; p(i) is the projection of x(i) onto the vector Θ
+simplification: Θ_0 = 0 (decision boundary pass through the origin point for sure)
+Θ applied to the parameters is not the Decision Boundary in the space; the direction of Θ is 90 degree with the real decision boundary
+
+Kernels:
+used for finding non-linear decision boundaries
+define new features for SVM
+
+Given x, compute new feature depending on proximity to landmarks l(1), l(2), l(3), etc.
+f1 = similarity(x, l(1)) = exp(- (|| x - l(1) || ^2 / (2*σ^2)))
+f2, f3 similar
+=> fi are kernel functions, to be specific, these are Gaussian Kernels
+also written as k(x, l(i))
+if x is close to k(x, l(i)) then fi is approximately 1
+if x is far away from it, fi would be close to 0
+the larger the σ^2 is, the slower the "mountain" would fall, and the "fatter" would it be; the height and the position of the "top" are unchanged
+
+predict 1 when Θ_0 + Θ_1 * f_1 + Θ_2 * f_2 + Θ_3 * f_3 >= 0
+
+choosing landmarks for kernel:
+exact the same position as the training examples l(1) is the same as x(1) // y not important here
+
+for x^(i), f_j^(i) = sim(x^(i), l^(j))
+f_i^(i) would be 1
+new feature vector to represent my training examples: f^(i) = [f0(i); f1(i); ... fm(i)]
+
+SVM with Kernels: // work perfectly together; kernel would cause other kind of algorithms to be slow
+predict y = 1 when Θ^T * f >= 0
+J = C * [∑(i=1~m) (y^(i) * cost_1(Θ^T * f^(i)) + (1 - y^(i)) * cost_0(Θ^T * f^(i)))] + 1 / 2 * ∑(j=1~n) Θ_j^2 // n = m
+mathmatical detail: sometimes Θ^T * Θ is reshaped into Θ^T * M * Θ
+
+SVM parameters:
+C:
+Large C = lower bias, high variance
+Small C = higher bias, low variance
+σ^2:
+Large σ^2: feature fi vary more smoothly; Higher bias, lower variance
+Small σ^2: feature fi vary less smoothly; Lower bias, higher variance
+// make your choice based on the cross-validation set
+
+Using An SVM:
+use svm software packages: liblinear, libsvm, etc.
+need to specify: C; Kernel (similarity function)
+
+Kernel:
+no kernel = linear kernel; suitable for n large and m small
+Gaussian kernel: need to choose σ^2; n small m large
+// note: do perform feature scaling before using Gaussian kernel: x_i and y_i for different (i)s are different
+
+other kernels:
+polynomial kernels: k(x, l) = (x^T * l + constant) ^ degree // suitable for non-negative x & l
+string kernel, chi-square kernel, etc.
+
+kernels should satisfy the technical condition: "Mercer's Theorem"
+
+many SVM package already have multi-class classification built-in, otherwise we can use 1-v-n
+
+logistic regression V.S. SVM:
+if n small m medium: SVM with gaussian kernel
+if n small m large: 1. add features; 2. SVM without kernel/ logistic regression
+if n is large: SVM without kernel/ logistic regression
+
+neural network: slower to train
+
+https://github.com/ahawker/machine-learning-coursera/tree/master/ex6
+https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/support-vector-machine/mlclass-ex6
