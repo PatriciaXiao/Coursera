@@ -1,0 +1,21 @@
+% J without regularization
+J = 1/2 * sum(sum(R .* (((X * Theta') - Y).^2)));
+%%% End Task 2.2.1' %%%
+
+% regularized gradients terms
+reg_X_grad = lambda * X;
+reg_Theta_grad = lambda * Theta;
+		
+% compute the requested values
+X_grad = ((X * Theta' - Y) .* R) * Theta + reg_X_grad;
+Theta_grad = ((X * Theta' - Y) .* R)' * X + reg_Theta_grad;
+
+% compute reg term
+reg = (lambda/2) * (sum(sum(Theta.^2)) + sum(sum(X.^2)));
+
+% J regularized 
+J = J + reg;
+
+% debug
+% fprintf('\ncofiCosFunc End. Program paused. Press enter to continue.\n');
+% pause;

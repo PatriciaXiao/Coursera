@@ -811,3 +811,341 @@ neural network: slower to train
 
 https://github.com/ahawker/machine-learning-coursera/tree/master/ex6
 https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/support-vector-machine/mlclass-ex6
+
+
+
+Week 8: Unsupervised Learning
+
+Lesson 1: Clustering
+
+the first unsupervised learning algorithm we'll learn: learn from unlabeled data instead of labeled data
+with all x and no y, try find some structure
+
+
+a specific algorithm in doing so is K-Means Algorithm
+the most popular algorithm to -- automatically group the data into coherent subsets or into coherent clusters for us -- by far
+
+e.g. group into 2 clusters:
+1. randomly initialize two points called the Cluster Centroids
+2. cluster assignment: for each point, choose one of the two CC to be grouped into (based on which is closer to)
+3. move centroids: move the CC's to the avarage position of their "followers" respectively (move to new means)
+4. re-group, run several iterations until no longer changing
+
+CC is called μ_i (i from 1 to K)
+c(i) is the closest μ's index (to x(i)) measured by square distance (i from 1 to m)
+
+K-means for non-seperable datasets: will result in deviding the data into segments
+
+Optimization Objective: --- cost function in K-means, also called a "Distortion"
+will help with: debug, performance
+J(c...μ...) = 1/m * ∑(i=1~m) (x(i) - μ_c(i))^2
+The cost function should NEVER increase, unless there's bug in the code
+
+Random Initialization:
+initialize K-means and avoid local optima
+given different initialization, there could be different outcomes (results)
+μ(i) happens to be the same with x(j) at the begining: it is the RECOMMENDED way of initialization!
+we can run it multiple times and choose the one with the least J(cost function)/lowest cost
+when K is small, the influence of initialization is large
+
+Choosing the number of clusters(K):
+automatic method of choosing the right K: the Elbow method:
+plot the graph: J-K (cost function of the result with different Ks)
+choose the "elbow" point (where the decrease of J turns from fast to slow)
+but there might end up with no "elbow"
+but should be going down unless stuck in local optima when K = k_something
+could take later/downstream purpose into consideration while selecting K
+
+
+Lesson 2: Dimensionality Reduction --- a second type of unsupervised learning problem
+
+Motivation:
+Motivation I: Data Compression
+e.g. reduce from 2D to 1D (a line) / 3D to 2D (a plain), 100D to ... etc.
+could reduce redundancy (the attributes that are highly attributed could be appear only once)
+we'll get a lower dimensional dataset {z(1), z(2), ... z(m)} instead of the original {x(1), x(2), ... x(m)}
+Motivation II: Visualization
+DR would help us visualize our data better
+we are expecting to have a 2 or 3 dimensional dataset
+
+Principal Component Analysis: (PCA)
+by far the most popular algorithm of DR
+minimize the "projection error" (the "blue line" segments in the vedio: project the data onto the line and minimize the "distance" between the "points" and the "line")
+(feature scaling, normalization)
+goal of PCA: find a vector u(1) onto which we could minimize the projection error
+u(1) or -u(1) doesn't matter
+it is at the same direction as the "line" we find (in 2D->1D case)
+if not 2D->1D: n-D->k-D: find k vectors (u(1), u(2), ... u(k)) onto which to project the data; so as to minimize the projection error
+e.g. 3D->2D: 2 vectors define a plane onto which we project the data
+
+PCA and linear regression are totally different algorithms
+linear regression: consider the vertical distance; trying to predict y;
+PCA: projection distance; trying to predict a line and all parameters are treated equally;
+
+Principal Component Analysis Algorithm:
+
+Data Preprocessing:
+Training set: x(1), x(2), ... x(m); 
+Preprocessing (feature scaling/ mean normalization):
+	μ_j = 1/m * ∑(i = 1~m) x_j(i) 
+	Replace each x_j(i) with x_j(i) - μ_j
+	If different features have different scales, scale them to have comparable range of values (e.g. (x_j(i) - μ_j)/s_j)
+Reduce data from n-dimensions to k-dimensions:
+	Compute "covariance matrix" (Σ / sigma):
+		Σ = 1/m * ∑(i = 1~n) (x(i)) (x(i))^T // [n * n] = [n * 1] * [1 * n] // // X = [x(1); x(2); x(3) ...] then Sigma = 1/m * X' * X
+	Compute "eigenvectors" of vector Σ:
+		[U, S, V] = svd(Sigma) // singular value decomposition
+	From [U, S, V] we get:
+		U: [n * n], colum i is exactly u(i) we want; the first k cols are what we're looking for, together called U_reduce
+			Z(i) = U_reduce^T * x(i) // [k * n] * [n * 1] = [k * 1]
+		// PCA is difficult to prove but easy to implement
+		S: [n * n], s_11, s_22, s_nn are only elements that are not 0, everything out the diagno would be 0;
+
+
+Applying PCA:
+
+Reconstruction from Compressed Representation:
+PCA: a compressing algorithm (reduce dimension): THUS, should be a way to go back from its compressed representation back to an approximation of the original high dimensional data
+since Z = U_reduce^T * X
+X_approx = U_reduce * Z //[n*1] = [n*k]*[k*1]
+this is a pretty decent approximation
+
+Choosing the Number of Principal Components: (how to choose K?)
+Choosing K:
+	Average squared projection error: 1/m * ∑(i = 1~m) ||x(i) - x_approx(i)||^2 // a
+	Total variation in the data: 1/m * ∑(i = 1~m) ||x(i)||^2 // b
+	Typically, choose k to be smallest value so that:
+		a / b <= 0.01 (1%) // 99% of variance is retained
+		// maybe 5% and 95% variance retained,etc.
+
+an algorithm:
+	Start with try PCA with k = 1
+	Compute U_reduce, z(1)~z(m), x_approx(1)~x_approx(m)
+	Check if a/b <= 0.01
+	k++ and re-run
+
+[U, S, V] = svd(Sigma)
+actually
+a = 1/m * ∑(i = 1~m) ||x(i) - x_approx(i)||^2 
+b =  1/m * ∑(i = 1~m) ||x(i)||^2 
+a / b <= 0.01
+a / b = 1 - ∑(i = 1~k) sii/ ∑(i = 1~n) Sii
+
+thus we can compute [U, S, V] first
+and then choose k by computing ∑(i = 1~k) sii/ ∑(i = 1~n) Sii
+
+
+Advice for Applying PCA:
+speed up learning algorithm
+
+Compression:
+Supervised learning algorithm speedup: (x(1), y(1)) ... (x(m), y(m))
+	Extract input, do PCA and get new training set (z(i), y(i)) (i=1~m) Note: the PCA mapping should be defined by running PCA on the training set, and it can be applied as well to x_cv and x_test
+Visualization:
+Reduce k to 2 or 3 so as to plot the data (otherwise don't get it)
+
+Bad use of PCA: prevent overfitting (for it makes features fewer)
+not a good way to address overfitting, should use lambda instead
+because: it throws away some data without knowing anything about the y
+
+PCA is sometimes used where it shouldn't be:
+when designing a ML system, it is not good to design one with PCA at the begining, we should see what if we do without
+do PCA only because it is required due to time/memory
+
+https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/k_means-pca/mlclass-ex7
+
+
+
+Week 9: 
+
+Lesson 1: Anomaly Detection
+
+Density Estimation:
+
+Problem Motivation: Anomaly Detection is mainly for unsupervised learning, but also has similar aspect with supervised learning
+Anomaly Detection example:
+
+- Fraud Detection:
+- Dataset {x(1), x(2), ... x(m)}
+- Goal x_test
+- Is x_test anomaly (very different from the training set)?
+- Build a model p(x) // probability
+-- if p(x) < ε (epsilon), flag anomaly; if p(x) >= ε, Okay
+- useful in finding unusual behaviors
+
+- Manufacturing: send the unusual pieces for further review
+
+- Monitoring Computers in a data center
+
+Gaussian Distribution: also called normal distribution
+x~N(μ, σ^2) //"~": distributed as; μ: mu, mean parameter; σ: sigma, variant parameter (σ^2 is called variance), standard deviation
+p is written as: p(x; μ, σ^2), means that x is distributed as N(μ, σ^2)
+when μ is changed, move left / right; σ larger, then flatter and shorter and wider
+parameter estimation problem: estimate (μ, σ^2)
+- μ: mean of x(i) // i = 1~m
+- σ^2: mean of (x(i) - μ)^2 // i = 1~m; actually in math we should devide it with (m-1) not (m), but they ar both okay with ML
+
+Algorithm: a density estimation algorithm
+p(x) = p(x1; μ1, σ1^2) * p(x2; μ2, σ2^2) * ... p(xn; μn, σn^2)
+= ∏ (j = 1~n) p(xj; μj, σj^2)
+
+Anomaly Detection Algorithm:
+- Choose Feature x that you think might be indicative of anomalous examples
+- Fit parameters μ1 ~ μn, σ1^2 ~ σn^2
+- Given new examples, compute p(x), anomaly if p(x) < ε
+
+Building an Anomaly Detection System
+
+Developing and Evaluating an Anomaly Detection System: How to evaluate an anomaly setection algorithm
+in order to evaluate: assume we have some labeled data, y=0 for non-anomalous and y=1 for anomalous
+- Training set, Cross Validation set, Test set
+- Flawed data (anomalous) should only be in CV and Test sets
+- CV and Test sets shouldn't be the same- that's not good habit
+- Fit parameter then run prediction on test set /(or) cross validation set
+- Possible evaluation metrics: (always skewed)
+-- True / False + Positive / Negative
+-- Precision / Recall
+-- F1-Score
+- Can also use Cross Validation set to choose ε
+
+Anomaly Detection vs. Supervised Learning
+
+Strength fields -
+Anomaly Detection:
+- Very small number of positive (y = 1) examples (normally 0~20), large number of negative examples (y = 0) used to fit p(x)
+- Many different "types" of anomalies, hard for any algorithm to learn from positive examples the common features
+- Future anolalies might not look like any of the anomalous we've seen so far
+Supervised Learning:
+- Large number of positive and negative examples
+- Enough positive examples for algorithms to learn what positive examples are like
+- Further positive examples tend to be like those in the training set
+
+Choosing What Features to Use:
+p(x) work okay if it's not Gaussian
+// hist - Octave
+play with transimation to make non-Gaussian features Gaussian
+e.g. log(x1), log(x2 + 2), x3^(1/2), x4^(1/3)
+- Error Analysis for Anomaly Detection: want normal and anomalous examples have distinguishable p(x)
+- Choose features that might take on unusually large or small values in the event of anomaly
+-- maybe create x5 = x1 / x2 or so to detect unusual combinations
+
+Multivariate Gaussian Distribution (Optional)
+
+Multivariate Gaussian Distribution: extension
+better in discover combined-features' anomaly
+don't model p(x1), p(x2) ... separately, model p(x) all in one go
+parameters: μ ∈ R^n, Σ ∈ R^(n*n) (covariance matrix)
+p(x; μ, Σ)
+|Σ|: determinet of Σ, Octave: det(sigma)
+// on the diag of Σ, each value represent the width of the "mount"
+// outside the diag of Σ (off-diag), values represent the correlation between parameters (the shape of the "mount" is twistted)
+
+Anomaly Detection using the Multivariate Gaussian Distribution
+μ: the average ( / m) of training examples
+Σ: Σ = (1/m) * ∑(i=1~m) (x(i) - μ) * (x(i) - μ)^T
+when off-diag Σ elements are all 0; multi-Gaussian could be represented by p(x1) * p(x2) * ...
+when do we use:
+Original Model:
+- Manually create features to capture anomalies where x1, x2 take unusual combinations of values
+- Coputationally cheaper, scale better to large n
+- Okay even if m is small
+Multivariate Gaussian:
+- Automatically captures correlations between features
+- Expensive to compute
+- must have m > n, or else Σ would be non-invertible (could have had highly redundant variables, reduce them might solve the problem)
+
+
+Lesson 2: Recommender Systems
+
+Predicting Movie Ratings:
+
+Content Based Recommendations
+n_u: users
+n_m: movies
+n_m * n_u: rating (score)
+n_m * (x1, x2): x1, x2 - the degree to which the movie is romance (x1) / action (x2); this is the vector of x
+for each user j, learn a parameter Θ(j) (if x0=1, x1, x2 then R3), predict user j as rating movie i with (Θ(j))^T * x(i)
+
+Problem formulation:
+r(i, j) = 1: if user j has rated movie i, otherwise = 0
+y(i, j): rating by user j on movie i (if defined)
+Θ(j): parameter vector of user j
+x(i): feature vector of movie i
+For movie i, user j predicting rate: (Θ(j))^T * (x(i))
+To learn Θ(j):
+- m(j): the amount of movies user j rated
+- min(Θ(j)) [(1/(2*m(j))) * ∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/(2*m(j)) * ∑(k =1~n)Θk(j)^2]
+- min(Θ(j)) [1/2 * ∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(k =1~n)Θk(j)^2]
+- learn Θ(1), ... Θ(n_u):
+-- min(Θ(1), ... Θ(n_u))[1/2 * ∑(j = 1~n_u) ∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(j = 1~n_u) ∑(k =1~n)Θk(j)^2]
+- Optimization Algorithm:
+-- Θk(j) := Θk(j) - α * (∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j)) * x_k(i)) // for k = 0
+-- Θk(j) := Θk(j) - α * (∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j)) * x_k(i) + λ * Θk(j)) // for k != 0
+
+Collaborative Filtering:
+
+could do "feature learning": learn features itself
+Θ(j): how does user j like different kind of movies (according to features, not specific movies)
+x(i): the feature vector of movie i
+Θ(j)^T * x(i): user j, movie i rating
+
+Optimization Algorithm:
+learn x from Θ
+- Given Θ(1) ... Θ(n_u) to learn x(i):
+-- min(x(i)) [1/2 * ∑(j:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(k =1~n)x_k(i)^2]
+- Given Θ(1) ... Θ(n_u) to learn x(1) ... x(n_m):
+-- min(x(1), ... x(n_m))[1/2 * ∑(i = 1~n_m) ∑(j:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(i = 1~n_m) ∑(k =1~n)x_k(i)^2]
+learn Θ from x
+- Given x(1) ... x(n_m) to learn Θ(j):
+-- min(Θ(j)) [1/2 * ∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(k =1~n)Θ_k(j)^2]
+- learn Θ(1), ... Θ(n_u):
+-- min(Θ(1), ... Θ(n_u))[1/2 * ∑(j = 1~n_u) ∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(j = 1~n_u) ∑(k =1~n)Θk(j)^2]
+Initial:
+- Guess Θ
+- then learn x
+- then learn Θ
+- ...
+
+Collaborative Filtering Algorithm:
+Minimizing Θ and x simultaneously:
+- J(x(1), ... x(n_m), Θ(1), ... Θ(n_u)) = 1/2 * ∑((i, j):r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j))^2 + λ/2 * ∑(i = 1~n_m) ∑(k =1~n)x_k(i)^2] + λ/2 * ∑(j = 1~n_u) ∑(k =1~n)Θk(j)^2]
+- min(x(1), ... x(n_m)) (Θ(1), ... Θ(n_u)) J
+- Previously x is R(n + 1) for x0 = 1; now we could get rid of it, and x is R(n) // because no need to hard code a 1; it could learn it self if necessary
+Initial:
+- all x and Θ elements to be: small random values, x and Θ are both R(n)
+- serve as symmetry breaking, ensures the x(1) ... x(n_m) are different from each other
+Minimize using gradient descent: (or advanced optimization algorithm)
+- x_k(i) := x_k(i) - α * (∑(j:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j)) * Θk(j) + λ * x_k(i))
+- Θk(j) := Θk(j) - α * (∑(i:r(i, j)=1) ((Θ(j))^T * (x(i)) - y(i, j)) * x_k(i) + λ * Θk(j))
+Predict:
+- user with Θ and movie with x: Θ^T * x
+
+Vectorization: Low Rank Matrix Factorization
+
+vectorization implementation of Collaborative Filtering
+movies: n_m
+users: n_u
+Y: users' ratings, a n_m * n_4 matrix; predict(j, i) = (Θ(j))^T * (x(i))
+X: [x(1);x(2);...x(n_m)]
+Θ: [Θ(1);Θ(2);...Θ(n_u)]
+Predict = X* Θ^T
+
+Something else you can do with CF: finding related movies
+- learn features
+- recommend movie j according to i
+- small ||x(j) - x(i)|| means similar
+
+Implementational Detail: Mean Normalization:
+- Users who has not yet rated any movies
+-- μ = [a(1); a(2); ... a(n_m)] // a(i) is the average rating of movie i
+-- for each Y(j, i), change it to be Y(j, i) - a(j), so average is zero
+-- learn Θ(j) and x(i) according to it
+-- Predict (Θ(j))^T * (x(i)) + μ_i
+-- For a new user: predict = μ_i
+- New Movies:
+-- also do as the similar (viewed as average)
+- Already on the same scale
+
+https://github.com/vgoklani/Stanford-Machine-Learning
+https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/anomaly_det-recommender/mlclass-ex8
+μμλ
