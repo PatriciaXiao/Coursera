@@ -1148,4 +1148,129 @@ Implementational Detail: Mean Normalization:
 
 https://github.com/vgoklani/Stanford-Machine-Learning
 https://github.com/vgoklani/Stanford-Machine-Learning/tree/master/anomaly_det-recommender/mlclass-ex8
-μμλ
+
+
+
+Week 10: Large Scale Machine Learning
+
+Gradient Descent with Large Datasets
+
+Learning With Large Datasets:
+- Data is booming these days
+- Larger dataset always makes the performance better
+- Computational problem: large dataset => derivative computed really slow => replace / find efficient way
+
+How to know if it'll be better with a large dataset? High variance when m is small. - By plotting J_cv && J_train - m; if the two lines are very different from each other, increasing the data amount would help a lot
+
+Stochastic Gradient Descent & Map Reduce
+
+Stochastic Gradient Descent: a modification to the traditional Gradient Descent Algorithm
+Traditional GD: Batch Gradient Descent
+- Why called Batch: we're looking at all the training examples at a time
+- Stochastic Gradient Descent: only one training example at a time
+cost(Θ, (x(i), y(i))) = 1/2 * (hΘ(x(i)) - y(i))^2
+J_train(Θ) = 1/m * ∑(i=1~m) cost(Θ, (x(i), y(i)))
+- 1. randomly shuffle (re-write) dataset
+- 2. repeat: // Batch: Θj := Θj - α/m * ∑ (i = 1~m) (hΘ(x(i)) - y(i)) * x_j(i)
+---- for i = 1~m, {
+-------- for j = 0~n, {
+------------ Θj := Θj - α * (hΘ(x(i)) - y(i)) * x_j(i) 
+-------- }
+---- }
+- Fit the i-th example a little bit better at the i-th iteration
+- Faster & Safer
+- Could help explain why start by randomly shaffling the dataset
+- Generally move to the global minimum J but not always
+- Not converging like Batch; it wanders around
+- Repeat the inner loop of "repeat" for probably 1 to 10 times (passes)
+
+Mini-Batch Gradient Descent: might be even faster
+use b examples in each iteration (instead of m, but not 1)
+"look for a better solution for the b examples"
+vectorization makes it possible for it to perform better than SGD
+Becomes Batch when b = m, becomes SGD when b = 1
+
+Stochastic Gradient Descent Convergence
+
+making sure the convergence:
+Batch: plot J-iteration, make sure it is decreasing
+SGD: compute J would need to compute entire m data, so: compute cost(Θ, (x(i), y(i))) = 1/2 * (hΘ(x(i)) - y(i))^2 before using (x(i), y(i)) to update Θ
+- Every k iteration, plot the cost(Θ, (x(i), y(i))) averaged over the k examples
+- a smaller learning rate: go down more slowly, but might end up in a slightly better solution
+- increasing k might make it smoother; a small k might means it would be too noisy
+- If it is diverging: decrease alpha!!! (learning rate)
+- could decreaase alpha over time if we want to converge to the global minimal (const1 / (const2+iterations))
+- use this method to: 1) make sure it is converging; 2) tune learning rate alpha
+
+Advanced Topics
+
+Online Learning
+update Θ with new coming (x, y) // one at a time
+after learning from an example we discard it
+- slowly adapt to different pool of users
+- suitable for a continuous stream of data
+- do require selecting alpha & good features chosen
+
+Map Reduce and Data Parallelism
+Map reduce is really important idea; at leat as important as GD
+Map-reduce could be applied to Batch GD, but not SGD
+- the idea was from Google
+- seperately compute & unite them together
+- apply to:
+-- multiple computers (clusters & data center)
+-- multi-core machines (multiple CPU / multiple core) // no network latency~
+could work for neuro network - each compute back for 1/n and forward for 1/n
+
+
+
+Week 11: Application Example: Photo OCR
+
+Problem Description and Pipeline
+
+Photo OCR=Photo Optical Character Recognition
+focusing on the text in the image: still a hard problem today (from photo; but from scanned document, that's easy)
+
+Photo OCR pipeline:
+1. Text detection - find the region where the text is in
+2. Character segmentation - devide the region into characters
+3. Character classification - get the exact character
+(maybe more complex, e.g. spell correcter)
+this is a pipeline; it is common; have multiple modules; some might be ML components, some are not
+
+Sliding Windows:
+Sliding Window Detector is used for text detection
+-pedestrian detection: rectangle with fixed width and height ratio, w/h fixed and positive/negative examples labelled, slide over a bit (step size / stride) in a -image at a time, use different size of windows to detect; 
+-but text areas' h/w vary
+-Text detection: similar with pedestrian - regions of text (y = 1 examples), regions without (y = 0)
+-find text by first spot characters => "expansion operator"
+Sliding Window Detector is also used for character segmentation
+-supervised learning algorithm again (y = 1/0); y=1 stands for "spot the midpoint between two characters"
+
+Getting Lots of Data and Artificial Data
+- get a low-bias algorithm and train it on lots of data would make a good algorithm
+- where are data from?
+- artificial data synthesis
+- method 1: use digital fonts + random background => create data
+- method 2: take the existing data and create new data => artificial distortion; amplify; should represent a certain type of noise, otherwise unlikely to help
+
+Getting more data:
+1. before: make sure "low bias" condition (plot learning curve)
+2. how much work would it be if we get more data?
+	- artificial data synthesis (make/distort)
+	- collect / label it yourself (somebody would have to spend certain amount of time - calculate the time amount first!)
+	- "Crowd Source" (e.g. Amazon Mechanical Turk)
+
+Ceiling Analysis: What Part of the Pipeline to Work on Next
+find the critical part of the project
+what part of the pipeline best worth work on
+list component - accuracy (overall system; module 1 (text detection); module 2; ... etc.)
+how to get the accuracy of each step? => use 100% accurate data (might be mannually inputed) to move on to the next step
+if it worth:
+module 1 improvement raise: accuracy(Module 1) - accuracy(Overall System)
+module 2 improvement raise: accuracy(Module 2) - accuracy(Module 1)
+...
+etc.
+potential increase: at most how much could be improved if we improve it (and all stages before it) to 100% correct
+
+http://octave.sourceforge.net/octave/function/ones.html
+
